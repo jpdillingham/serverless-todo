@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
+import { getGuid } from '../util';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import CheckBox from 'material-ui/svg-icons/toggle/check-box'
-import CheckBoxOutlineBlank from 'material-ui/svg-icons/toggle/check-box-outline-blank'
-import TextField from 'material-ui/TextField'
-import TodoList from './TodoList';
-import Paper from 'material-ui/Paper'
 
-import { getGuid } from '../util'
+import Paper from 'material-ui/Paper';
+import TextField from 'material-ui/TextField';
+import CheckBox from 'material-ui/svg-icons/toggle/check-box';
+import CheckBoxOutlineBlank from 'material-ui/svg-icons/toggle/check-box-outline-blank';
+
+import TodoList from './TodoList';
 
 const initialState = {
-    newTodo: '',
-    todos: [
-        {
-            todo: "Load the app",
-            done: true,
-        },
-        {
-            todo: "Make some To Dos",
-        }
-    ]
+    input: '',
+    todos: [],
 };
 
 const styles = {
@@ -33,7 +26,7 @@ const styles = {
         left: 15,
         top: 10,
         marginBottom: 10
-    }
+    },
 }
 
 class App extends Component {
@@ -41,15 +34,15 @@ class App extends Component {
 
     handleTodoChange = (event, value) => {
         this.setState({ 
-            newTodo: value 
+            input: value 
         });
     }
 
     handleTodoEnter = () => {
         this.setState({
-            todos: this.state.todos.concat({ id: getGuid(), todo: this.state.newTodo }),
-            newTodo: ''
-        })     
+            todos: this.state.todos.concat({ id: getGuid(), todo: this.state.input }),
+            input: ''
+        })
     }
 
     handleTodoClick = (todo) => {
@@ -67,7 +60,7 @@ class App extends Component {
                     <TextField
                         style={styles.textField}
                         hintText="To Do"
-                        value={this.state.newTodo}
+                        value={this.state.input}
                         onChange={this.handleTodoChange}
                         onKeyPress={e => {
                             if (e.key === 'Enter') {

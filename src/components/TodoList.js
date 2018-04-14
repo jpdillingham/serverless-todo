@@ -4,17 +4,6 @@ import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader'
 
 class TodoList extends Component {
-    handleTodoChange = (event, value) => {
-        this.setState({ newTodo: value });
-    }
-
-    handleAdd = () => {
-        this.setState({
-            todos: this.state.todos.concat({ todo: this.state.newTodo }),
-            newTodo: ''
-        })
-    }
-
     render() {
         return (
             <List>
