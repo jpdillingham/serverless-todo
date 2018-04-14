@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { List, ListItem } from 'material-ui/List';
 
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton';
@@ -50,23 +51,23 @@ class App extends Component {
             onClick={this.handleAdd}
           />
           <span>To Do</span>
-          <ul>
+          <List>
             {this.state.todos
               .filter(todo => !todo.done)
               .map(todo => 
-                <li>{todo.todo}</li>
+                <ListItem>{todo.todo}</ListItem>
               )
             }
-          </ul>
+          </List>
           <span>Done</span>
-          <ul>
+          <List>
             {this.state.todos
               .filter(todo => todo.done)
               .map(todo => 
-                <li>{todo.todo}</li>
+                <ListItem>{todo.todo}</ListItem>
               )
             }
-          </ul>
+          </List>
         </div>
       </MuiThemeProvider>
     );
