@@ -5,7 +5,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import CheckBox from 'material-ui/svg-icons/toggle/check-box'
 import CheckBoxOutlineBlank from 'material-ui/svg-icons/toggle/check-box-outline-blank'
 import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton';
 import TodoList from './TodoList';
 
 const initialState = {
@@ -58,7 +57,6 @@ class App extends Component {
                 <div>
                     <TextField
                         hintText="To Do"
-                        floatingLabelText="To Do"
                         value={this.state.newTodo}
                         onChange={this.handleTodoChange}
                         onKeyPress={e => {
@@ -66,12 +64,6 @@ class App extends Component {
                               this.handleTodoEnter();
                             }
                         }}
-                    />
-                    <RaisedButton 
-                        label="Add" 
-                        primary={true}
-                        disabled={this.state.newTodo === ''}
-                        onClick={this.handleAdd}
                     />
                     <TodoList
                         todos={this.state.todos.filter(todo => !todo.done)}
