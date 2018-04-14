@@ -62,13 +62,13 @@ class App extends Component {
                         todos={this.state.todos.filter(todo => !todo.done)}
                         title={'Active'}
                         icon={<CheckBoxOutlineBlank/>}
-                        onClick={handleClick}
+                        onClick={this.handleClick}
                     />
                     <TodoList
                         todos={this.state.todos.filter(todo => todo.done)}
                         title={'Done'}
                         icon={<CheckBox/>}
-                        onClick={handleClick}
+                        onClick={this.handleClick}
                     />
                 </div>
             </MuiThemeProvider>
