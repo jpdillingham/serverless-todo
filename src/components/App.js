@@ -11,60 +11,60 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TodoList from './TodoList';
 
 const initialState = {
-  newTodo: '',
-  todos: [
-    {
-      todo: "Load the app",
-      done: true,
-    },
-    {
-      todo: "Make some To Dos",
-    }
-  ]
+    newTodo: '',
+    todos: [
+        {
+            todo: "Load the app",
+            done: true,
+        },
+        {
+            todo: "Make some To Dos",
+        }
+    ]
 };
 
 class App extends Component {
-  state = initialState;
+    state = initialState;
 
-  handleTodoChange = (event, value) => {
-    this.setState({ newTodo: value });
-  }
+    handleTodoChange = (event, value) => {
+        this.setState({ newTodo: value });
+    }
 
-  handleAdd = () => {
-    this.setState({
-      todos: this.state.todos.concat({ todo: this.state.newTodo }),
-      newTodo: ''
-    })
-  }
+    handleAdd = () => {
+        this.setState({
+            todos: this.state.todos.concat({ todo: this.state.newTodo }),
+            newTodo: ''
+        })
+    }
 
-  render() {
-    return (
-      <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <div>
-          <TextField
-            hintText="To Do"
-            floatingLabelText="To Do"
-            value={this.state.newTodo}
-            onChange={this.handleTodoChange}
-          />
-          <RaisedButton 
-            label="Add" 
-            primary={true}
-            disabled={this.state.newTodo === ''}
-            onClick={this.handleAdd}
-          />
-          <TodoList
-            todos={this.state.todos.filter(todo => !todo.done)}
-            title={'Active'}
-          />
-          <TodoList
-            todos={this.state.todos.filter(todo => todo.done)}
-            title={'Done'}
-          />
-        </div>
-      </MuiThemeProvider>
-    );
-  }
+    render() {
+        return (
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
+                <div>
+                    <TextField
+                        hintText="To Do"
+                        floatingLabelText="To Do"
+                        value={this.state.newTodo}
+                        onChange={this.handleTodoChange}
+                    />
+                    <RaisedButton 
+                        label="Add" 
+                        primary={true}
+                        disabled={this.state.newTodo === ''}
+                        onClick={this.handleAdd}
+                    />
+                    <TodoList
+                        todos={this.state.todos.filter(todo => !todo.done)}
+                        title={'Active'}
+                    />
+                    <TodoList
+                        todos={this.state.todos.filter(todo => todo.done)}
+                        title={'Done'}
+                    />
+                </div>
+            </MuiThemeProvider>
+        );
+    }
 }
 
 export default App;
