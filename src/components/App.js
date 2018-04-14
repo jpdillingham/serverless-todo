@@ -2,14 +2,11 @@ import React, { Component } from 'react';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { List, ListItem } from 'material-ui/List';
-import Subheader from 'material-ui/Subheader'
 import CheckBox from 'material-ui/svg-icons/toggle/check-box'
 import CheckBoxOutlineBlank from 'material-ui/svg-icons/toggle/check-box-outline-blank'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton';
 import TodoList from './TodoList';
-import { Checkbox } from 'material-ui';
 
 const initialState = {
     newTodo: '',
