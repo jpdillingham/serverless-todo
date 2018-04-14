@@ -6,6 +6,7 @@ import CheckBox from 'material-ui/svg-icons/toggle/check-box'
 import CheckBoxOutlineBlank from 'material-ui/svg-icons/toggle/check-box-outline-blank'
 import TextField from 'material-ui/TextField'
 import TodoList from './TodoList';
+import Paper from 'material-ui/Paper'
 
 const initialState = {
     newTodo: '',
@@ -19,6 +20,12 @@ const initialState = {
         }
     ]
 };
+
+const styles = {
+    textField: {
+        marginLeft: 10
+    }
+}
 
 class App extends Component {
     state = initialState;
@@ -36,14 +43,7 @@ class App extends Component {
         })     
     }
 
-    handleAdd = () => {
-        this.setState({
-            todos: this.state.todos.concat({ todo: this.state.newTodo }),
-            newTodo: ''
-        })
-    }
-
-    handleClick = (todo) => {
+    handleTodoClick = (todo) => {
         this.setState({
             todos: this.state.todos.map(t => { 
                 return t.todo === todo.todo ? { ...todo, done: !todo.done } : t
@@ -54,8 +54,9 @@ class App extends Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <div>
+                <Paper zDepth={3}>
                     <TextField
+                        style={styles.textField}
                         hintText="To Do"
                         value={this.state.newTodo}
                         onChange={this.handleTodoChange}
@@ -69,15 +70,15 @@ class App extends Component {
                         todos={this.state.todos.filter(todo => !todo.done)}
                         title={'Active'}
                         icon={<CheckBoxOutlineBlank/>}
-                        onClick={this.handleClick}
+                        onClick={this.handleTodoClick}
                     />
                     <TodoList
                         todos={this.state.todos.filter(todo => todo.done)}
                         title={'Done'}
                         icon={<CheckBox/>}
-                        onClick={this.handleClick}
+                        onClick={this.handleTodoClick}
                     />
-                </div>
+                </Paper>
             </MuiThemeProvider>
         );
     }
