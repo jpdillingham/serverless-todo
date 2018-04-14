@@ -30,6 +30,13 @@ class App extends Component {
         });
     }
 
+    handleTodoEnter = () => {
+        this.setState({
+            todos: this.state.todos.concat({ todo: this.state.newTodo }),
+            newTodo: ''
+        })     
+    }
+
     handleAdd = () => {
         this.setState({
             todos: this.state.todos.concat({ todo: this.state.newTodo }),
@@ -54,6 +61,11 @@ class App extends Component {
                         floatingLabelText="To Do"
                         value={this.state.newTodo}
                         onChange={this.handleTodoChange}
+                        onKeyPress={e => {
+                            if (e.key === 'Enter') {
+                              this.handleTodoEnter();
+                            }
+                        }}
                     />
                     <RaisedButton 
                         label="Add" 
