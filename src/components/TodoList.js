@@ -21,8 +21,9 @@ class TodoList extends Component {
                 {this.props.todos.length > 0 ? 
                     <Subheader>{this.props.title}</Subheader> : ''}
                     {this.props.todos
-                        .map(todo => 
+                        .map((todo, index) => 
                             <ListItem
+                                key={index}
                                 leftIcon={this.props.icon}
                                 onClick={() => this.props.onClick(todo)}
                             >
