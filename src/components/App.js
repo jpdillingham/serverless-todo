@@ -8,6 +8,7 @@ import CheckBox from 'material-ui/svg-icons/toggle/check-box'
 import CheckBoxOutlineBlank from 'material-ui/svg-icons/toggle/check-box-outline-blank'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton';
+import TodoList from './TodoList';
 
 const initialState = {
   newTodo: '',
@@ -52,26 +53,14 @@ class App extends Component {
             disabled={this.state.newTodo === ''}
             onClick={this.handleAdd}
           />
-          <List>
-            <Subheader>Active</Subheader>
-            {this.state.todos
-              .filter(todo => !todo.done)
-              .map(todo => 
-                <ListItem
-                  leftIcon={<CheckBoxOutlineBlank/>}
-                >{todo.todo}</ListItem>
-              )
-            }
-            {this.state.todos.filter(todo => todo.done).length > 0 ? 
-            <Subheader>Done</Subheader> : ''}
-            {this.state.todos
-              .filter(todo => todo.done)
-              .map(todo => 
-                <ListItem
-                  leftIcon={<CheckBox/>}
-                >{todo.todo}</ListItem>
-              )}
-          </List>
+          <TodoList
+            todos={this.state.todos.filter(todo => !todo.done)}
+            title={'Active'}
+          />
+          <TodoList
+            todos={this.state.todos.filter(todo => todo.done)}
+            title={'Done'}
+          />
         </div>
       </MuiThemeProvider>
     );
