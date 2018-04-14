@@ -9,6 +9,7 @@ import CheckBoxOutlineBlank from 'material-ui/svg-icons/toggle/check-box-outline
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton';
 import TodoList from './TodoList';
+import { Checkbox } from 'material-ui';
 
 const initialState = {
     newTodo: '',
@@ -37,6 +38,10 @@ class App extends Component {
         })
     }
 
+    handleClick = (todo) => {
+        console.log(todo)
+    }
+
     render() {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
@@ -56,10 +61,14 @@ class App extends Component {
                     <TodoList
                         todos={this.state.todos.filter(todo => !todo.done)}
                         title={'Active'}
+                        icon={<CheckBoxOutlineBlank/>}
+                        onClick={handleClick}
                     />
                     <TodoList
                         todos={this.state.todos.filter(todo => todo.done)}
                         title={'Done'}
+                        icon={<CheckBox/>}
+                        onClick={handleClick}
                     />
                 </div>
             </MuiThemeProvider>
