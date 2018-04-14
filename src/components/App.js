@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { List, ListItem } from 'material-ui/List';
-
+import CheckBox from 'material-ui/svg-icons/toggle/check-box'
+import CheckBoxOutlineBlank from 'material-ui/svg-icons/toggle/check-box-outline-blank'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -55,7 +56,9 @@ class App extends Component {
             {this.state.todos
               .filter(todo => !todo.done)
               .map(todo => 
-                <ListItem>{todo.todo}</ListItem>
+                <ListItem
+                  leftIcon={<CheckBoxOutlineBlank/>}
+                >{todo.todo}</ListItem>
               )
             }
           </List>
@@ -64,7 +67,9 @@ class App extends Component {
             {this.state.todos
               .filter(todo => todo.done)
               .map(todo => 
-                <ListItem>{todo.todo}</ListItem>
+                <ListItem
+                  leftIcon={<CheckBox/>}
+                >{todo.todo}</ListItem>
               )
             }
           </List>
