@@ -23,10 +23,14 @@ const initialState = {
 
 const styles = {
     paper: {
-        width: 400
+        width: 400,
+        margin: 'auto'
     },
     textField: {
-        marginLeft: 10
+        width: 370,
+        left: 15,
+        top: 10,
+        marginBottom: 10
     }
 }
 
@@ -57,7 +61,7 @@ class App extends Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <Paper zDepth={3} style={styles.paper}>
+                <Paper zDepth={4} style={styles.paper}>
                     <TextField
                         style={styles.textField}
                         hintText="To Do"
