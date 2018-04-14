@@ -25,7 +25,9 @@ class App extends Component {
     state = initialState;
 
     handleTodoChange = (event, value) => {
-        this.setState({ newTodo: value });
+        this.setState({ 
+            newTodo: value 
+        });
     }
 
     handleAdd = () => {
@@ -36,10 +38,10 @@ class App extends Component {
     }
 
     handleClick = (todo) => {
-        let toggledTodo = todo.done = !todo.done;
-
         this.setState({
-            todos: this.state.todos.map(todo => { return todo.todo === toggledTodo.todo ? toggledTodo : todo })
+            todos: this.state.todos.map(t => { 
+                return t.todo === todo.todo ? { ...todo, done: !todo.done } : t
+            })
         })
     }
 
