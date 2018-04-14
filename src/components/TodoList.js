@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader'
-import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton';
 
 class TodoList extends Component {
     handleTodoChange = (event, value) => {
