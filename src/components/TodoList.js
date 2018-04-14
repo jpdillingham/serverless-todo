@@ -10,31 +10,31 @@ import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton';
 
 class TodoList extends Component {
-  handleTodoChange = (event, value) => {
-    this.setState({ newTodo: value });
-  }
+    handleTodoChange = (event, value) => {
+        this.setState({ newTodo: value });
+    }
 
-  handleAdd = () => {
-    this.setState({
-      todos: this.state.todos.concat({ todo: this.state.newTodo }),
-      newTodo: ''
-    })
-  }
+    handleAdd = () => {
+        this.setState({
+            todos: this.state.todos.concat({ todo: this.state.newTodo }),
+            newTodo: ''
+        })
+    }
 
-  render() {
-    return (
-        <List>
-            {this.props.todos.length > 0 ? 
-            <Subheader>{this.props.title}</Subheader> : ''}
-            {this.props.todos
-                .map(todo => 
-                <ListItem
-                    leftIcon={<CheckBox/>}
-                >{todo.todo}</ListItem>
-                )}
-        </List>
-    );
-  }
+    render() {
+        return (
+            <List>
+                {this.props.todos.length > 0 ? 
+                <Subheader>{this.props.title}</Subheader> : ''}
+                {this.props.todos
+                    .map(todo => 
+                        <ListItem
+                            leftIcon={<CheckBox/>}
+                        >{todo.todo}</ListItem>
+                    )}
+            </List>
+        );
+    }
 }
 
 export default TodoList;
