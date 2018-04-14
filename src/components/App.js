@@ -36,7 +36,11 @@ class App extends Component {
     }
 
     handleClick = (todo) => {
-        console.log(todo)
+        let toggledTodo = todo.done = !todo.done;
+
+        this.setState({
+            todos: this.state.todos.map(todo => { return todo.todo === toggledTodo.todo ? toggledTodo : todo })
+        })
     }
 
     render() {
