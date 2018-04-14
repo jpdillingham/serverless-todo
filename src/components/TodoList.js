@@ -4,8 +4,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader'
-import CheckBox from 'material-ui/svg-icons/toggle/check-box'
-import CheckBoxOutlineBlank from 'material-ui/svg-icons/toggle/check-box-outline-blank'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -25,13 +23,17 @@ class TodoList extends Component {
         return (
             <List>
                 {this.props.todos.length > 0 ? 
-                <Subheader>{this.props.title}</Subheader> : ''}
-                {this.props.todos
-                    .map(todo => 
-                        <ListItem
-                            leftIcon={<CheckBox/>}
-                        >{todo.todo}</ListItem>
-                    )}
+                    <Subheader>{this.props.title}</Subheader> : ''}
+                    {this.props.todos
+                        .map(todo => 
+                            <ListItem
+                                leftIcon={this.props.icon}
+                                onClick={() => this.props.onClick(todo)}
+                            >
+                                {todo.todo}
+                            </ListItem>
+                        )
+                    }
             </List>
         );
     }
