@@ -8,6 +8,8 @@ import TextField from 'material-ui/TextField'
 import TodoList from './TodoList';
 import Paper from 'material-ui/Paper'
 
+import { getGuid } from '../util'
+
 const initialState = {
     newTodo: '',
     todos: [
@@ -45,7 +47,7 @@ class App extends Component {
 
     handleTodoEnter = () => {
         this.setState({
-            todos: this.state.todos.concat({ todo: this.state.newTodo }),
+            todos: this.state.todos.concat({ id: getGuid(), todo: this.state.newTodo }),
             newTodo: ''
         })     
     }
