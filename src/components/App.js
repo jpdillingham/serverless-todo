@@ -9,6 +9,7 @@ import TextField from 'material-ui/TextField';
 import CheckBox from 'material-ui/svg-icons/toggle/check-box';
 import CheckBoxOutlineBlank from 'material-ui/svg-icons/toggle/check-box-outline-blank';
 
+import TodoInput from './TodoInput';
 import TodoList from './TodoList';
 
 const initialState = {
@@ -38,17 +39,16 @@ class App extends Component {
         });
     }
 
-    handleTodoEnter = () => {
+    handleTodoEnter = (input) => {
         this.setState({
-            todos: this.state.todos.concat({ id: getGuid(), todo: this.state.input }),
-            input: ''
+            todos: this.state.todos.concat({ id: getGuid(), todo: input })
         })
     }
 
     handleTodoClick = (todo) => {
         this.setState({
             todos: this.state.todos.map(t => { 
-                return t.todo === todo.todo ? { ...todo, done: !todo.done } : t
+                return t.id === todo.id ? { ...todo, done: !todo.done } : t
             })
         })
     }
@@ -57,16 +57,9 @@ class App extends Component {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <Paper zDepth={4} style={styles.paper}>
-                    <TextField
-                        style={styles.textField}
-                        hintText="To Do"
-                        value={this.state.input}
-                        onChange={this.handleTodoChange}
-                        onKeyPress={e => {
-                            if (e.key === 'Enter') {
-                              this.handleTodoEnter();
-                            }
-                        }}
+                    <TodoInput
+                        placeholder={'To Do'}
+                        handleEnter={this.handleTodoEnter}
                     />
                     <TodoList
                         todos={this.state.todos.filter(todo => !todo.done)}
