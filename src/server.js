@@ -18,13 +18,16 @@ app.get('/todos', (req, res) => {
     res.json(todos);
 });
 
-app.post('/todo', (req, res) => {
-    todos.concat(req.body);
+app.post('/todos', (req, res) => {
+    let todo = req.body;
+
+    todos.push(todo);
+
     res.status(200);
     res.json(todos);
 });
 
-app.patch('/todo/:id', (req, res) => {
+app.patch('/todos/:id', (req, res) => {
     let id = req.params.id;
 
     todos = todos.map(todo => { 
