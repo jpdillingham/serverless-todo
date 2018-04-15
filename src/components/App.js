@@ -43,7 +43,7 @@ class App extends Component {
 
     handleTodoEnter = (input) => {
         let todo = { id: getGuid(), todo: input };
-        console.log(todo);
+        
         axios.post(API_URL, todo)
         .then(response => {
             this.setState({
@@ -53,11 +53,14 @@ class App extends Component {
     };
 
     handleTodoClick = (todo) => {
-        this.setState({
-            todos: this.state.todos.map(t => { 
-                return t.id === todo.id ? { ...todo, done: !todo.done } : t
-            })
-        });
+        todo = { ...todo, done: !todo.done };
+
+        axios.patch(API_URL + '/' + todo.id, todo)
+        .then(response => {
+            this.setState({
+                todos: response.data
+            });
+        })
     };
 
     render() {
