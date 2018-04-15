@@ -29,7 +29,7 @@ class App extends Component {
     };
 
     componentWillMount = () => {
-        axios.get(API_URL + '/todos')
+        axios.get(API_URL)
         .then(response => {
             this.setState({ todos: response.data })
         })
@@ -42,8 +42,13 @@ class App extends Component {
     };
 
     handleTodoEnter = (input) => {
-        this.setState({
-            todos: this.state.todos.concat({ id: getGuid(), todo: input })
+        let todo = { id: getGuid(), todo: input };
+        console.log(todo);
+        axios.post(API_URL, todo)
+        .then(response => {
+            this.setState({
+                todos: response.data
+            });
         });
     };
 
