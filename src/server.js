@@ -11,9 +11,28 @@ app.use(cors());
 app.use(bodyParser.json());  
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/hello', function(req, res) {  
+let todos = [];
+
+app.get('/todos', (req, res) => {  
     res.status(200);
-    res.json('Hello world');
+    res.json(todos);
+});
+
+app.post('/todo', (req, res) => {
+    todos.concat(req.body);
+    res.status(200);
+    res.json(todos);
+});
+
+app.patch('/todo/:id', (req, res) => {
+    let id = req.params.id;
+
+    todos = todos.map(todo => { 
+        return todo.id === id ? { ...todo, done: !todo.done } : todo
+    });
+
+    res.status(200);
+    res.json(todos);
 });
 
 app.listen(port, () => console.log('Listening on port ' + port + '.')); // ignored by lambda
