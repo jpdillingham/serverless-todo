@@ -18,8 +18,8 @@ import TodoList from './TodoList';
 const styles = {
     paper: {
         width: 400,
-        margin: 'auto'
-    }
+        margin: 'auto',
+    },
 };
 
 class App extends Component {
@@ -31,9 +31,11 @@ class App extends Component {
     componentWillMount = () => {
         axios.get(API_URL)
         .then(response => {
-            this.setState({ todos: response.data })
-        })
-    }
+            this.setState({ 
+                todos: response.data 
+            });
+        });
+    };
 
     handleTodoChange = (event, value) => {
         this.setState({ 
@@ -60,7 +62,7 @@ class App extends Component {
             this.setState({
                 todos: response.data
             });
-        })
+        });
     };
 
     render() {
