@@ -5,53 +5,44 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
 import CheckBox from 'material-ui/svg-icons/toggle/check-box';
 import CheckBoxOutlineBlank from 'material-ui/svg-icons/toggle/check-box-outline-blank';
 
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
 
-const initialState = {
-    input: '',
-    todos: [],
-};
-
 const styles = {
     paper: {
         width: 400,
         margin: 'auto'
-    },
-    textField: {
-        width: 370,
-        left: 15,
-        top: 10,
-        marginBottom: 10
-    },
-}
+    }
+};
 
 class App extends Component {
-    state = initialState;
+    state = {
+        input: '',
+        todos: [],        
+    };
 
     handleTodoChange = (event, value) => {
         this.setState({ 
             input: value 
         });
-    }
+    };
 
     handleTodoEnter = (input) => {
         this.setState({
             todos: this.state.todos.concat({ id: getGuid(), todo: input })
-        })
-    }
+        });
+    };
 
     handleTodoClick = (todo) => {
         this.setState({
             todos: this.state.todos.map(t => { 
                 return t.id === todo.id ? { ...todo, done: !todo.done } : t
             })
-        })
-    }
+        });
+    };
 
     render() {
         return (
@@ -76,7 +67,7 @@ class App extends Component {
                 </Paper>
             </MuiThemeProvider>
         );
-    }
-}
+    };
+};
 
 export default App;

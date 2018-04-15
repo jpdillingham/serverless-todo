@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { List, ListItem } from 'material-ui/List';
-import Subheader from 'material-ui/Subheader'
+import Subheader from 'material-ui/Subheader';
 
 class TodoList extends Component {
     render() {
@@ -10,9 +10,9 @@ class TodoList extends Component {
                 {this.props.todos.length > 0 ? 
                     <Subheader>{this.props.title}</Subheader> : ''}
                     {this.props.todos
-                        .map((todo, index) => 
+                        .map(todo => 
                             <ListItem
-                                key={index}
+                                key={todo.id}
                                 leftIcon={this.props.icon}
                                 onClick={() => this.props.onClick(todo)}
                             >
@@ -22,7 +22,7 @@ class TodoList extends Component {
                     }
             </List>
         );
-    }
-}
+    };
+};
 
 export default TodoList;
