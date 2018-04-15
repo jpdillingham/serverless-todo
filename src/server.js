@@ -27,7 +27,7 @@ app.post('/todos', (req, res) => {
     res.json(todos);
 });
 
-app.patch('/todos/:id', (req, res) => {
+app.put('/todos/:id', (req, res) => {
     let id = req.params.id;
     let todo = req.body;
 

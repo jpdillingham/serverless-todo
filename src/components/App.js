@@ -55,7 +55,7 @@ class App extends Component {
     handleTodoClick = (todo) => {
         todo = { ...todo, done: !todo.done };
 
-        axios.patch(API_URL + '/' + todo.id, todo)
+        axios.put(API_URL + '/' + todo.id, todo)
         .then(response => {
             this.setState({
                 todos: response.data
