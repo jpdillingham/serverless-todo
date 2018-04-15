@@ -29,9 +29,10 @@ app.post('/todos', (req, res) => {
 
 app.patch('/todos/:id', (req, res) => {
     let id = req.params.id;
+    let todo = req.body;
 
-    todos = todos.map(todo => { 
-        return todo.id === id ? { ...todo, done: !todo.done } : todo
+    todos = todos.map(t => { 
+        return t.id === id ? todo : t
     });
 
     res.status(200);
