@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 import { getGuid } from '../util';
+
+import { API_URL } from '../constants';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -23,6 +27,13 @@ class App extends Component {
         input: '',
         todos: [],        
     };
+
+    componentWillMount = () => {
+        axios.get(API_URL + '/todos')
+        .then(response => {
+            this.setState({ todos: response.data })
+        })
+    }
 
     handleTodoChange = (event, value) => {
         this.setState({ 
