@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { getGuid } from '../util';
 
-import { API_URL } from '../constants';
+import { REMOTE_API_URL, LOCAL_API_URL } from '../constants';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -14,6 +14,8 @@ import CheckBoxOutlineBlank from 'material-ui/svg-icons/toggle/check-box-outline
 
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
+
+const API_URL = window.location.hostname.includes('amazonaws.com') ? REMOTE_API_URL : LOCAL_API_URL;
 
 const styles = {
     paper: {
