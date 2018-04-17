@@ -51,7 +51,7 @@ When the Lambda is created, scroll down to the 'Function code' section and selec
 
 When the upload is complete, update the 'Handler' field with the value `src/server.handler`.  This indicates the path to the file containing the Lambda code, and the name of the function to invoke.
 
-# Test a GET
+## Test a GET
 
 Near the top of the screen click the 'Test' button.  The 'Configure test event' dialog will open; enter 'GET' in the 'Event name' field and paste the following json into the code field:
 
@@ -76,7 +76,7 @@ Select 'GET' from the drop-down list next to the 'Test' button, then click 'Test
   "body": "[]",
 ```
 
-# Test a POST
+## Test a POST
 
 Select 'Configure test events' from the drop-down list next to 'Test', then click 'Test' and choose 'Create new test event' from the available options.  Repeat the steps above, naming the event 'POST' and pasting the following json:
 
@@ -103,3 +103,27 @@ Select 'POST' from the drop-down list next to the 'Test' button, then click 'Tes
 ```
 
 Note that repeated tests will append to the returned list.
+
+# API Gateway
+
+Select API Gateway from 'Services' under 'Networking & Content Delivery', then click 'Create API'.
+
+Select 'New API' and enter a name, then click 'Create API'.  Click the 'Actions' drop-down button and select 'Create Resource'.  The 'New Child Resource' page will load.
+
+Tick the box next to 'Configure as proxy resource', tick 'Enable API Gateway CORS', then click 'Create Resource'.
+
+On the Setup page, select 'Lambda Function Proxy', the region in which you created your Lambda, and select your Lambda (you may need to type the first letter to get the list to appear).  Click 'Save'.  When prompted to accept permissions, accept.
+
+Click the 'Actions' drop-down button and select 'Deploy API'.  The 'Deploy API' dialog will open.  Select '[New Stage]' for 'Development stage' and type in a name, then click 'Deploy'.
+
+Note the 'Invoke URL'; this is the endpoint for the front end to use.
+
+## Test GET
+
+Open a browser and navigate to your invoke url with '/todos' appended to the end.  The browser should display the contents of the todo array.
+
+# Update Front End and Test
+
+Open the front end application in a text editor and edit the contents of `constants.js`, setting `REMOTE_API_URL` to your invoke url + '/todos'.
+
+Run `npm run build`, then follow the instructions above to redeploy your static files to S3, then navigate your browser to your static file url to test the application.  
