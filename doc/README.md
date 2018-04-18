@@ -1,8 +1,12 @@
 # Prepare Files
 
+## Clone the Repository
+
+Open a command prompt and navigate to a folder where you'd like to store the files for this session, then execute `git clone http://github.com/qccoders/serverless-todo`.  When the download is finished, navigate into the `serverless-todo` directory and execute `git checkout aws-deploy` to switch to the branch containing the code that is ready to deploy.
+
 ## Install Dependencies
 
-Open a command prompt and navigate to the `serverless-todo` directory, then execute `npm install`.
+Navigate to the `serverless-todo` directory, then execute `npm install`.
 
 ## Build the Project
 
