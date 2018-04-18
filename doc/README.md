@@ -127,3 +127,27 @@ Open a browser and navigate to your invoke url with '/todos' appended to the end
 Open the front end application in a text editor and edit the contents of `constants.js`, setting `REMOTE_API_URL` to your invoke url + '/todos'.
 
 Run `npm run build`, then follow the instructions above to redeploy your static files to S3, then navigate your browser to your static file url to test the application.  
+
+# DynamoDB
+
+Select DynamoDD from 'Services' under 'Database', then click 'Create table'.  Enter any name you wish, and enter 'user' for the primary key.  Accept all other defaults and click 'Create'.  It will take a minute or two to create your table.
+
+## Add DynamoDB Permissions to your IAM Role
+
+Select IAM from 'Services' under 'Security, Identity & Compliance'. Click on 'Roles' beneath 'IAM Resources', then select the IAM role you created when setting up your Lambda.
+
+Click 'Attach policy' near the top of the permissions list, then type in 'dynamo' to filter the list.  Select 'AmazonDynamoDBFullAccess', then click 'Attach policy'.
+
+Note that in a production environment you'll want to put more consideration into the permissions you grant here.
+
+## Switch to the Dynamo Branch
+
+From a command prompt, execute `git checkout dynamo` to retrieve the code required for DynamoDB integration.
+
+Update the `REMOTE_API_URL` and `TABLE_NAME` constants in `constants.js` and `database.js`, respectively.
+
+Save, build and deploy the application to S3 and Lambda.
+
+# Test!
+
+Navigate your browser to your S3 URL and test it out!
